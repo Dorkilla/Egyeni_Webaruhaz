@@ -74,7 +74,6 @@ function frissitTabla(lista = KUBULISTA) {
             const termekNeve = event.target.closest('tr').querySelector('td:first-child').textContent;
             const darabInput = event.target.closest('tr').querySelector('.darabInput');
             const darab = parseInt(darabInput.value);
-           
         });
     });
 }
