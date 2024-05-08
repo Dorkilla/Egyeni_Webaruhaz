@@ -74,18 +74,18 @@ document.getElementById('kosarMegjelenites').addEventListener('click', function 
 
 function vegosszegKiszamitasa() {
     let osszeg = 0;
-    const kosarTetelek = document.querySelectorAll("#kosar-tartalom .list-group-item");
+    const kosarTetelek = document.querySelectorAll("#kosar-tartalom .list-group-item");//az összes tartalom kiválasztása a listán belül
     kosarTetelek.forEach(tetel => {
-        const arString = tetel.textContent.match(/\d+/);
+        const arString = tetel.textContent.match(/\d+/); //számjegy keresés
         if (arString) {
-            const ar = parseInt(arString[0]);
+            const ar = parseInt(arString[0]); //string számmá alakítása
             osszeg += ar;
         }
     });
     return osszeg;
 }
 
-window.onload = function () {
+window.onload = function () { //oldal betöltése
     frissitTabla();
 
     document.getElementById("osszeg").textContent = vegosszegKiszamitasa() + " Ft";
