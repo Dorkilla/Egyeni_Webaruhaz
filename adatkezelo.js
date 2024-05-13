@@ -1,33 +1,30 @@
+export function rendez(lista, irany) {
+  /* rendez(lista) -> rendezettLista | a paraméterében kapott listát név szerint megrendezi;   */
+  lista.sort(function (e1, e2) {
+    /*  név szerint */
+    let eredmeny = 1;
+    if (e1.nev < e2.nev) {
+      eredmeny = -1;
+    }
+    //ha a visszatérési értéke pozitív, akkor nem cserél, ha negatív, akkor cserél */
+    return eredmeny * irany;
+  });
+  
+  return lista;
+}
+
 export function szures(lista, keresoSzoveg) {
-  const szuroLISTA = lista.filter(function (termek) {
-    return termek.nev.toUpperCase().includes(keresoSzoveg.toUpperCase());
+  /* 
+-> szurtLista | a keresőmezőbe beírt szöveget keresi a lista objektumainak név mezőjében. mindez akkor fut le, ha beírunk valamit a keresőmezőbe.  */
+  const szurtLISTA = lista.filter(function (termekek) {
+    return termekek.nev.toUpperCase().includes(keresoSzoveg.toUpperCase());
   });
-  return szuroLISTA;
+  return szurtLISTA;
 }
 
-export function rendezNev(lista, irany) {
-  lista.sort(function (e1, e2) {
-    let nev1 = e1.nev.toUpperCase();
-    let nev2 = e2.nev.toUpperCase();
-    if (nev1 < nev2) {
-      return -1 * irany;
-    }
-    if (nev1 > nev2) {
-      return 1 * irany;
-    }
-    return 0;
-  });
+export function torol(lista, id) {
+  /* torol(lista,id )->tLista | kitorli a listából az adott id-jű elemet.*/
+
+  lista.splice(id, 1);
   return lista;
-}
-
-export function rendezAr(lista, irany) {
-  lista.sort(function (e1, e2) {
-    return (e1.ar - e2.ar) * irany;
-  });
-  return lista;
-}
-
-export function kartyakMegjelenitese(txt) {
-  const oldalDivELEM = $("#termekKartyak");
-  oldalDivELEM.html(txt);
 }

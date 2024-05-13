@@ -1,28 +1,133 @@
-*{
-    box-sizing: border-box;
-    margin:auto;
+* {
+  box-sizing: border-box;
+  margin: auto;
 }
+
+body {
+  background: linear-gradient(to right, #ffcc99, #ff9999);
+}
+
 ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
-  }
-  
-  li {
-    float: left;
-  }
-  
-  li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-  }
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
 
-  li a:hover {
-    background-color: #111;
-  }
+li {
+  float: left;
+}
 
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #111;
+}
+
+.bg-black {
+  background-color: black;
+}
+
+.text-white {
+  color: white;
+}
+
+.card {
+  background-color: #ff9966;
+  color: #fff;
+  border: 2px solid #cc7d85;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  /*Kártya megemelése hover esetén*/
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+  /*Árnyék hozzáadása*/
+}
+
+/* Képek formázása */
+.card img {
+  max-height: 150px;
+  width: auto;
+  border-top-left-radius: 10px;
+  /*Kép kerekítése a bal felső sarokban*/
+  border-top-right-radius: 10px;
+  /*Kép kerekítése a jobb felső sarokban*/
+}
+
+/* Kártya tartalmának formázása */
+.card-body {
+  padding: 1.5rem;
+  /*Belső tér az elválasztásért*/
+}
+
+.card-body h4 {
+  color: #dc3545;
+  margin-bottom: 1rem;
+  /*Térköz a cím és a többi tartalom között */
+}
+
+.card-body ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.card-body ul li {
+  margin-bottom: 0.5rem;
+  /*Kisméretű térköz az elemek között */
+  font-size: 1.1rem;
+  /*Nagyobb méretű termék információk */
+  line-height: 1.5;
+  /*Kényelmes sorok közötti távolság */
+}
+
+.card-body .card-text {
+  font-size: 1.4rem;
+  /*Nagyobb méret az árnak*/
+  font-weight: bold;
+  color: #28a745;
+}
+
+/* Gomb formázása */
+.gomb {
+  background-color: #cc7d85;
+  border-color: #cc7d85;
+  padding: 0.75rem 1.5rem;
+  /*Méretes gomb*/
+  border-radius: 5px;
+  font-weight: bold;/ transition: all 0.3s ease;
+  /*Sima áttűnés*/
+}
+
+.gomb:hover {
+  background-color: #c82333;
+  border-color: #bd2130;
+  transform: translateY(-2px);
+  /*Gomb megemelése hover esetén */
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.3);
+  /*Árnyék hozzáadása*/
+}
+
+.termek-info {
+  padding: 10px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.kosar-oldal {
+  display: none;
+}
+
+.kosar-oldal.active {
+  display: block;
+}

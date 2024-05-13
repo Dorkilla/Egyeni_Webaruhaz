@@ -1,77 +1,55 @@
-export function htmlOsszeallitNav(aktualisIndex) {
-    const oldalLista = ["Termékek", "Kosár", "Személyes Adatok"];
-    let txtN = "";
-    txtN += `<div class='container-fluid'>`;
-    txtN += `<ul class="navbar-nav">`;
-    for (let index = 0; index < oldalLista.length; index++) {
-        let osztaly = (index === aktualisIndex) ? "active nav-link" : "nav-link";
-        txtN += `<li class="nav-item"><a class="${osztaly}" href='index.html'>${oldalLista[index]}</a></li>`;
-    }
-    txtN += `</ul>`;
-    txtN += `</div>`;
-    return txtN;
-}
-
-export function megjelenit(txtN) {
-    const oldalDivELEM = $(".oldal");
-    oldalDivELEM.html(txtN);
-}
-
-export function htmlOsszeallitKartyak(KUBULISTA) {
-    let htmlKartyak = "";
-    KUBULISTA.forEach((termek) => {
-      htmlKartyak += `
-        <div class="col-4">
-          <div class="card">
-            <img src="${termek.kep}" class="card-img-top" alt="${termek.nev}" />
-            <div class="card-body">
-              <h5 class="card-title">${termek.nev}</h5>
-              <p class="card-text">${termek.leiras}</p>
-              <p class="card-text">Ár: ${termek.ar} Ft</p>
+export function htmlOsszeallitKartyak(termekek) {
+  let txt = "<div class='row row-cols-1 row-cols-md-3 g-4' style='margin-top: 20px;'>"; //Az összes kártya egy sorban helyezkedik el
+  for (let index = 0; index < termekek.length; index++) {
+    txt += `
+      <div class="col">
+        <div class="card bg-black text-white">
+          <img class="card-img-top" src="${termekek[index].kep}" alt="Kép" style="object-fit: cover; height: 200px;"> <!-- A képek méretének beállítása -->
+          <div class="card-body">
+            <div class="termek-info"> <!-- Div elem a termék információinak -->
+              <h5 class="card-title">Név:</h5>
+              <h6 class="nev">${termekek[index].nev}</h6>
+              <h5 class="card-title">Íz:</h5>
+              <p class="iz">${termekek[index].iz}</p>
+              <h5 class="card-title">Méret:</h5>
+              <p class="meret">${termekek[index].meret}</p>
+              <h5 class="card-title">Leírás:</h5>
+              <p class="leiras">${termekek[index].info}</p>
+              <h5 class="card-title">Ár:</h5>
+              <p class="card-text">${termekek[index].ar} Ft</p>
+              <button class="gomb" data-index="${index}" type="button">Kosárba</button>
             </div>
           </div>
         </div>
-      `;
-    });
-    return htmlKartyak;
+      </div>`;
   }
-  
-
-export function kartyakMegjelenitese(txt) {
-    const oldalDivELEM = $(".kartyak");
-    oldalDivELEM.html(txt);
+  txt += "</div>"; 
+  return txt;
 }
 
-export function rendezes(lista) {
-    const nevELEM = $("#NovekvoNev");
-    const nevELEM2 = $("#CsokkenoNev");
-    const arELEM = $("#NovekvoAr");
-    const arELEM2 = $("#CsokkenoAr");
-    const meretELEM = $("#NovekvoMeret");
-    const meretELEM2 = $("#CsokkenoMeret");
+export function kartyakMegjelenitese(txt) {
+  const kartyakDivELEM = $(".termekek");
+  kartyakDivELEM.html(txt);
+}
 
-    nevELEM.on("click", function () {
-        const rLISTA = rendezNev(lista, 1, "nev");
-        init(rLISTA);
-    });
-    nevELEM2.on("click", function () {
-        const rLISTA = rendezNev(lista, -1, "nev");
-        init(rLISTA);
-    });
-    arELEM.on("click", function () {
-        const rLISTA = rendezAr(lista, 1);
-        init(rLISTA);
-    });
-    arELEM2.on("click", function () {
-        const rLISTA = rendezAr(lista, -1);
-        init(rLISTA);
-    });
-    meretELEM.on("click", function () {
-        const rLISTA = rendezNev(lista, 1, "datum");
-        init(rLISTA);
-    });
-    meretELEM2.on("click", function () {
-        const rLISTA = rendezNev(lista, -1, "datum");
-        init(rLISTA);
-    });
+export function kosar(KUBULISTA, kosarTartalma) {
+  $(".gomb").on("click", function (event) {
+    let index = parseInt(event.target.dataset.index);
+    let aktualisElem = KUBULISTA[index];
+    let i = 0;
+    while (i < kosarTartalma.length && aktualisElem.nev !== kosarTartalma[i].nev) {
+      i++;
+    }
+    if (i < kosarTartalma.length) {
+      while (kosarTartalma[i].db < 5) {
+        kosarTartalma[i].db++;
+      }
+    } else {
+      aktualisElem.db = 1;
+      kosarTartalma.push(aktualisElem);
+    }
+    megjelenitKosar(kosarOsszeallit(kosarTartalma));
+    let osszeg = kosarOsszeg(kosarTartalma);
+    $(".osszesen #osszeg").text(`${osszeg} Ft`);
+  });
 }

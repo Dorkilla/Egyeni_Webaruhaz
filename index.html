@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,30 +11,27 @@
   <script type="module" src="main.js"></script>
   <link rel="stylesheet" href="stilus.css">
 </head>
+
 <body>
   <main>
     <header>
       <h1>Webáruház</h1>
     </header>
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-      <div class="container-fluid">
+      <div class="oldal container-fluid">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link active" href="index.html">Termékek</a>
+            <a id="termekLink" class="nav-link active" href="#">Termékek</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="index.html">Kosár</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="index.html">Személyes Adatlap</a>
+            <a id="szemelyesAdatlapLink" class="nav-link" href="#">Személyes Adatlap</a>
           </li>
         </ul>
       </div>
 
       <div class="dropdown">
         <button id="rendezes" type="button" class="btn bg-white color-black dropdown-toggle"
-          data-bs-toggle="dropdown">Rendezési szempontok
-        </button>
+          data-bs-toggle="dropdown">Rendezési szempontok</button>
         <ul class="dropdown-menu">
           <li><a id="NovekvoNev" class="dropdown-item" href="#">Név növekvő rendezése</a></li>
           <li><a id="CsokkenoNev" class="dropdown-item" href="#">Név csökkenő rendezése</a></li>
@@ -51,15 +49,20 @@
         </div>
       </form>
     </nav>
-    <div class="termekek" id="termekKartyak"></div>
-    <aside>
+    <div id="termekKartyak" class="termekek">
+      
+    </div>
+    <div class="kosar-es-osszeg">
       <h2>Kosár:</h2>
       <div class="kosar"></div>
       <div class="osszesen">
         <h3>Összesen: <span id="osszeg">0 Ft</span></h3>
       </div>
+    </div>
+
+    <aside class="szemelyes-adatlap">
+      <!-- Személyes adatlap tartalma -->
     </aside>
-    <footer></footer>
   </main>
 </body>
 </html>

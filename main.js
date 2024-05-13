@@ -1,42 +1,89 @@
 import { KUBULISTA } from "./adatok.js";
-import { rendezAr, rendezNev } from "./adatkezelo.js";
-import { kartyakMegjelenitese } from "./fuggvenyek.js";
+import { htmlOsszeallitKartyak, kartyakMegjelenitese } from "./fuggvenyek.js";
 
-export function rendezes(lista) {
-    const nevELEM = $("#NovekvoNev");
-    const nevELEM2 = $("#CsokkenoNev");
-    const arELEM = $("#NovekvoAr");
-    const arELEM2 = $("#CsokkenoAr");
-    const meretELEM = $("#NovekvoMeret");
-    const meretELEM2 = $("#CsokkenoMeret");
+//Termékkártyák összeállítása
+const termekKartyakHTML = htmlOsszeallitKartyak(KUBULISTA);
 
-    nevELEM.on("click", function () {
-        const rLISTA = rendezNev(lista, 1, "nev");
-        kartyakMegjelenitese(htmlOsszeallitKartyak(rLISTA));
-    });
-    nevELEM2.on("click", function () {
-        const rLISTA = rendezNev(lista, -1, "nev");
-        kartyakMegjelenitese(htmlOsszeallitKartyak(rLISTA));
-    });
-    arELEM.on("click", function () {
-        const rLISTA = rendezAr(lista, 1);
-        kartyakMegjelenitese(htmlOsszeallitKartyak(rLISTA));
-    });
-    arELEM2.on("click", function () {
-        const rLISTA = rendezAr(lista, -1);
-        kartyakMegjelenitese(htmlOsszeallitKartyak(rLISTA));
-    });
-    meretELEM.on("click", function () {
-        const rLISTA = rendezNev(lista, 1, "meret");
-        kartyakMegjelenitese(htmlOsszeallitKartyak(rLISTA));
-    });
-    meretELEM2.on("click", function () {
-        const rLISTA = rendezNev(lista, -1, "meret");
-        kartyakMegjelenitese(htmlOsszeallitKartyak(rLISTA));
-    });
+// Termékkártyák megjelenítése az oldalon
+kartyakMegjelenitese(termekKartyakHTML);
 
-    const kartyakHTML = htmlOsszeallitKartyak(lista);
-    kartyakMegjelenitese(kartyakHTML);
+//Kártyák elrendezésének frissítése az oldal betöltésekor és az ablak méretének változásakor
+$(document).ready(kartyakElrendezese);
+$(window).resize(kartyakElrendezese);
+
+//Kártyák elrendezésének dinamikus beállítása
+function kartyakElrendezese() {
+    const cardContainer = $(".termekek");
+    const cardWidth = cardContainer.find(".card").first().outerWidth(true); // Kártya szélessége, beleértve a margókat is
+    const containerWidth = cardContainer.width(); // Kártya konténer szélessége
+    const cardsPerRow = Math.floor(containerWidth / cardWidth); // Kártyák száma egy sorban
+
+    //Kártyák konténerének szélessége
+    cardContainer.css("max-width", cardsPerRow * cardWidth + "px");
 }
 
-rendezes(KUBULISTA);
+//Menüpontok közötti váltás
+$(document).ready(function () {
+    // Kezdetben csak a termékek és a kosár jelenik meg
+    $(".szemelyes-adatlap").hide();
+  
+    // Termékek oldalra lapozás esetén
+    $("#termekLink").click(function () {
+      $(".termekek, .kosar-es-osszeg").show();
+      $(".szemelyes-adatlap").hide();
+    });
+  
+    // Személyes adatlapra lapozás esetén
+    $("#szemelyesAdatlapLink").click(function () {
+      $(".termekek, .kosar-es-osszeg").hide();
+      $(".szemelyes-adatlap").show();
+    });
+  });
+
+let irany = 1; /* 1 - növekvő rendezés , -1 csökkenő rendezés */
+init(KUBULISTA);
+szuresEsemeny();
+
+function init(lista) {
+    kartyakMegjelenitese(htmlOsszeallitKartyak(lista));
+    rendezEsemeny();
+    torolEsemeny();
+}
+
+//a függvény akkor fut le, ha a táblázat név fejlécére kattintunk. */
+function rendezEsemeny() {
+  const nevELEM = $(".termekek table th").eq(0);
+  nevELEM.on("click", function () {
+    const rendezesLISTA = rendez(KUBULISTA, irany);
+    console.log(rendezesLISTA);
+    init(rendezesLISTA);
+    irany *= -1;
+  });
+}
+
+function szuresEsemeny() {
+    /* akkor kell lefutnia, ha megváltozik a keresőmező tartalma */
+    const keresoELEM = $("#szuro");
+    keresoELEM.on("keyup", function () {
+      let keresoSzoveg = keresoELEM.val();
+      const szLISTA = szures(KUBULISTA, keresoSzoveg);
+      init(szLISTA);
+    });
+}
+
+function torolEsemeny() {
+    /* Akkor fog lefutni, ha sor melletti torol gombra kattintunk.  */
+    const torolGOMB = $(".torol");
+    torolGOMB.on("click", function (event) {
+      /*  event.target az az elem, amelyik kiváltotta az eseményt */
+      let id = event.target.id;
+      console.log(id);
+      const LISTA = torol(KUBULISTA, id);
+      init(LISTA);
+    });
+}
+
+
+
+
+
