@@ -1,3 +1,5 @@
+import { KUBULISTA } from "./adatok.js";
+
 export function htmlOsszeallitKartyak(termekek) {
   let txt = "<div class='row row-cols-1 row-cols-md-3 g-4' style='margin-top: 20px;'>"; //Az összes kártya egy sorban helyezkedik el
   for (let index = 0; index < termekek.length; index++) {
@@ -23,7 +25,7 @@ export function htmlOsszeallitKartyak(termekek) {
         </div>
       </div>`;
   }
-  txt += "</div>"; 
+  txt += "</div>";
   return txt;
 }
 
@@ -32,24 +34,84 @@ export function kartyakMegjelenitese(txt) {
   kartyakDivELEM.html(txt);
 }
 
-export function kosar(KUBULISTA, kosarTartalma) {
-  $(".gomb").on("click", function (event) {
-    let index = parseInt(event.target.dataset.index);
-    let aktualisElem = KUBULISTA[index];
-    let i = 0;
-    while (i < kosarTartalma.length && aktualisElem.nev !== kosarTartalma[i].nev) {
-      i++;
-    }
-    if (i < kosarTartalma.length) {
-      while (kosarTartalma[i].db < 5) {
-        kosarTartalma[i].db++;
-      }
+
+let kosarTartalma = [];
+
+function frissitKosar() {
+  let kosarHTML = `
+  <div class="container">
+  <h2>Kosár:</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Név</th>
+        <th scope="col">Ár</th>
+        <th scope="col">Darab</th>
+        <th scope="col">Törlés</th>
+      </tr>
+    </thead>
+    <tbody>`;
+  let osszeg = 0;
+  let termekDarabok = {};
+
+  kosarTartalma.forEach(termek => {
+    if (termekDarabok.hasOwnProperty(termek.nev)) {
+      termekDarabok[termek.nev]++;
     } else {
-      aktualisElem.db = 1;
-      kosarTartalma.push(aktualisElem);
+      termekDarabok[termek.nev] = 1;
     }
-    megjelenitKosar(kosarOsszeallit(kosarTartalma));
-    let osszeg = kosarOsszeg(kosarTartalma);
-    $(".osszesen #osszeg").text(`${osszeg} Ft`);
+
+    osszeg += termek.ar;
   });
+
+  for (let termekNev in termekDarabok) {
+    if (termekDarabok.hasOwnProperty(termekNev)) {
+      const termekAdatok = KUBULISTA.find(termek => termek.nev === termekNev);
+      kosarHTML += `
+        <tr>
+          <td>${termekNev}</td>
+          <td>${termekAdatok.ar} Ft</td>
+          <td>${termekDarabok[termekNev]}</td>
+          <td><button class="torles-gomb" data-termek="${termekNev}">Törlés</button></td>
+        </tr>`;
+    }
+  }
+
+  kosarHTML += `
+      </tbody>
+    </table>
+    <div class="osszesen">
+      <h3>Összesen: ${osszeg} Ft</h3>
+    </div>`;
+
+  $(".kosar").html(kosarHTML);
 }
+
+$(document).on("click", ".gomb", function () {
+  const index = $(this).data("index");
+  const termek = KUBULISTA[index];
+
+  kosarTartalma.push(termek);
+
+  frissitKosar();
+});
+
+$(document).on("click", ".torles-gomb", function () {
+  const termekNev = $(this).data("termek");
+
+  // Megkeresem a kiválasztott terméket a kosárban
+  const index = kosarTartalma.findIndex(termek => termek.nev === termekNev);
+
+  // Ha a termék több mint egyszer van a kosárban
+  if (kosarTartalma.filter(termek => termek.nev === termekNev).length > 1) {
+    // Eltávolítok egy darabot
+    kosarTartalma.splice(index, 1);
+  } else {
+    //Ha csak egy darab van belőle a kosárban, teljesen eltávolítom
+    kosarTartalma.splice(index, 1);
+  }
+
+  frissitKosar();
+});
+
+export { frissitKosar };

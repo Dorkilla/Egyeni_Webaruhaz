@@ -123,11 +123,91 @@ li a:hover {
   display: flex;
   flex-direction: column;
 }
-
-.kosar-oldal {
-  display: none;
+.table {
+  width: 80%;
+  margin: 20px auto;
+  border-collapse: collapse;
+  border-radius: 10px;
 }
 
-.kosar-oldal.active {
-  display: block;
+.table thead th {
+  background-color: #cc7d85;
+  color: black;
+  font-weight: bold;
+  padding: 12px;
+  text-align: left;
+  border-bottom: 2px solid #ff9966;
+}
+
+.table tbody td {
+  background-color: #ff9966;
+  color: black;
+  font-weight: bold;
+  padding: 10px;
+  border-bottom: 1px solid #cc7d85;
+}
+
+.table tbody td:first-child {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.table tbody td:last-child {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.table tbody td:last-child {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.torles-gomb {
+  background-color: #cc7d85;
+  color: black;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-weight: bold;
+}
+
+.torles-gomb:hover {
+  background-color: #c82333;
+}
+
+.kosar {
+  margin-bottom: 20px;
+}
+
+.kosar table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.kosar th,
+.kosar td {
+  border: 1px solid black;
+  padding: 8px;
+  text-align: center;
+}
+
+.kosar th {
+  background-color: #f8f9fa;
+  font-weight: bold;
+}
+
+.kosar .osszesen {
+  text-align: center;
+}
+
+.kosar .osszesen h3 {
+  margin: 0;
+  font-weight: bold;
+}
+
+.kosar .osszesen span {
+  font-weight: normal;
 }

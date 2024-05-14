@@ -30,15 +30,16 @@
       </div>
 
       <div class="dropdown">
-        <button id="rendezes" type="button" class="btn bg-white color-black dropdown-toggle"
-          data-bs-toggle="dropdown">Rendezési szempontok</button>
-        <ul class="dropdown-menu">
-          <li><a id="NovekvoNev" class="dropdown-item" href="#">Név növekvő rendezése</a></li>
-          <li><a id="CsokkenoNev" class="dropdown-item" href="#">Név csökkenő rendezése</a></li>
-          <li><a id="NovekvoAr" class="dropdown-item" href="#">Ár növekvő rendezése</a></li>
-          <li><a id="CsokkenoAr" class="dropdown-item" href="#">Ár csökkenő rendezése</a></li>
-          <li><a id="NovekvoMeret" class="dropdown-item" href="#">Méret növekvő rendezése</a></li>
-          <li><a id="CsokkenoMeret" class="dropdown-item" href="#">Méret csökkenő rendezése</a></li>
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+            Rendezési szempontok
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <li><a class="dropdown-item" href="#">Név növekvő rendezése</a></li>
+            <li><a class="dropdown-item" href="#">Név csökkenő rendezése</a></li>
+            <li><a class="dropdown-item" href="#">Ár növekvő rendezése</a></li>
+            <li><a class="dropdown-item" href="#">Ár csökkenő rendezése</a></li>
+            <li><a class="dropdown-item" href="#">Méret növekvő rendezése</a></li>
+            <li><a class="dropdown-item" href="#">Méret csökkenő rendezése</a></li>
         </ul>
       </div>
 
@@ -53,11 +54,7 @@
       
     </div>
     <div class="kosar-es-osszeg">
-      <h2>Kosár:</h2>
       <div class="kosar"></div>
-      <div class="osszesen">
-        <h3>Összesen: <span id="osszeg">0 Ft</span></h3>
-      </div>
     </div>
 
     <aside class="szemelyes-adatlap">
