@@ -4,13 +4,13 @@ import { rendez, szures } from "./adatkezelo.js";
 
 //Kártyák elrendezésének dinamikus beállítása
 function kartyakElrendezese() {
-  const cardContainer = $(".termekek");
-  const cardWidth = cardContainer.find(".card").first().outerWidth(true); // Kártya szélessége, beleértve a margókat is
-  const containerWidth = cardContainer.width(); // Kártya konténer szélessége
-  const cardsPerRow = Math.floor(containerWidth / cardWidth); // Kártyák száma egy sorban
+  const kartyaContainer = $(".termekek");
+  const kartyaSzelesseg = kartyaContainer.find(".card").first().outerWidth(true); // Kártya szélessége, beleértve a margókat is
+  const containerSzelesseg = kartyaContainer.width(); // Kártya konténer szélessége
+  const kartyaSoronkent = Math.floor(containerSzelesseg / kartyaSzelesseg); // Kártyák száma egy sorban
 
-  //Kártyák konténerének szélessége
-  cardContainer.css("max-width", cardsPerRow * cardWidth + "px");
+  //Kártyák konténerének szélessége soronként
+  kartyaContainer.css("max-width", kartyaSoronkent * kartyaSzelesseg + "px");
 }
 
 //Menüpontok közötti váltás

@@ -37,7 +37,7 @@ export function kartyakMegjelenitese(txt) {
 
 let kosarTartalma = [];
 
-function frissitKosar() {
+function frissitKosar() {  //Táblázatként megjeleníti
   let kosarHTML = `
   <div class="container">
   <h2>Kosár:</h2>
@@ -55,16 +55,16 @@ function frissitKosar() {
   let termekDarabok = {};
 
   kosarTartalma.forEach(termek => {
-    if (termekDarabok.hasOwnProperty(termek.nev)) {
+    if (termekDarabok.hasOwnProperty(termek.nev)) {     //Számolja, hogy az adott termék hányszor került bele a kosárba
       termekDarabok[termek.nev]++;
     } else {
       termekDarabok[termek.nev] = 1;
     }
 
-    osszeg += termek.ar;
+    osszeg += termek.ar;  //és az árát is számolja
   });
 
-  for (let termekNev in termekDarabok) {
+  for (let termekNev in termekDarabok) {  //Megkeresi az aktuális termékhez az adatokat 
     if (termekDarabok.hasOwnProperty(termekNev)) {
       const termekAdatok = KUBULISTA.find(termek => termek.nev === termekNev);
       kosarHTML += `
@@ -77,7 +77,8 @@ function frissitKosar() {
     }
   }
 
-  kosarHTML += `
+//Megjeleníti az összeget
+  kosarHTML += `  
       </tbody>
     </table>
     <div class="osszesen">
@@ -99,15 +100,15 @@ $(document).on("click", ".gomb", function () {
 $(document).on("click", ".torles-gomb", function () {
   const termekNev = $(this).data("termek");
 
-  // Megkeresem a kiválasztott terméket a kosárban
+  // Megkeresi a kiválasztott terméket a kosárban
   const index = kosarTartalma.findIndex(termek => termek.nev === termekNev);
 
   // Ha a termék több mint egyszer van a kosárban
   if (kosarTartalma.filter(termek => termek.nev === termekNev).length > 1) {
-    // Eltávolítok egy darabot
+    // Eltávolít egy darabot
     kosarTartalma.splice(index, 1);
   } else {
-    //Ha csak egy darab van belőle a kosárban, teljesen eltávolítom
+    //Ha csak egy darab van belőle a kosárban, teljesen eltávolítja
     kosarTartalma.splice(index, 1);
   }
 
