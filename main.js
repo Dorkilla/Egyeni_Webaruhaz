@@ -34,12 +34,6 @@ $(document).ready(function () {
 
 let irany = 1;
 
-$(document).ready(function() {
-    var dropdownElementList = [].slice.call(document.querySelectorAll('.dropdown-toggle'))
-    var dropdownList = dropdownElementList.map(function (dropdownToggleEl) {
-      return new bootstrap.Dropdown(dropdownToggleEl)
-    });
-});
 
 init(KUBULISTA);
 
@@ -57,6 +51,7 @@ function rendezEsemeny() {
     const rendezettLista = rendez(KUBULISTA, irany);
     kartyakMegjelenitese(htmlOsszeallitKartyak(rendezettLista));
   });
+  init(rendezettLista)
 }
 
 function szuresEsemeny() {
@@ -66,6 +61,7 @@ function szuresEsemeny() {
     const szLISTA = szures(KUBULISTA, keresoSzoveg);
     kartyakMegjelenitese(htmlOsszeallitKartyak(szLISTA));
   });
+  init(szLISTA)
 }
 
 
