@@ -32,7 +32,7 @@ $(document).ready(function () {
 });
 
 
-/*let irany = 1;
+let irany = 1;
 init(KUBULISTA);
 
 function init(lista) {
@@ -60,8 +60,7 @@ function szuresEsemeny() {
     kartyakMegjelenitese(htmlOsszeallitKartyak(szLISTA));
   });
   init(szLISTA)
-}
-*/
+
 
 
 
