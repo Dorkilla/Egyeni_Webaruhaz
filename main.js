@@ -2,10 +2,10 @@ import { KUBULISTA } from "./adatok.js";
 import { htmlOsszeallitKartyak, kartyakMegjelenitese, frissitKosar } from "./fuggvenyek.js";
 import { rendez, szures } from "./adatkezelo.js";
 
-//Kártyák elrendezésének dinamikus beállítása
+//Kártyák elrendezése
 function kartyakElrendezese() {
   const kartyaContainer = $(".termekek");
-  const kartyaSzelesseg = kartyaContainer.find(".card").first().outerWidth(true); // Kártya szélessége, beleértve a margókat is
+  const kartyaSzelesseg = kartyaContainer.find(".card").first().outerWidth(true); // Kártya szélessége
   const containerSzelesseg = kartyaContainer.width(); // Kártya konténer szélessége
   const kartyaSoronkent = Math.floor(containerSzelesseg / kartyaSzelesseg); // Kártyák száma egy sorban
 
@@ -15,16 +15,16 @@ function kartyakElrendezese() {
 
 //Menüpontok közötti váltás
 $(document).ready(function () {
-  // Kezdetben csak a termékek és a kosár jelenik meg
+  // Kezdetben csak a termékek és a kosár 
   $(".szemelyes-adatlap").hide();
 
-  // Termékek oldalra lapozás esetén
+  // Termékek oldal
   $("#termekLink").click(function () {
     $(".termekek, .kosar-es-osszeg").show();
     $(".szemelyes-adatlap").hide();
   });
 
-  // Személyes adatlapra lapozás esetén
+  // Személyes adatlap
   $("#szemelyesAdatlapLink").click(function () {
     $(".termekek, .kosar-es-osszeg").hide();
     $(".szemelyes-adatlap").show();

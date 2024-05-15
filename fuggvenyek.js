@@ -37,7 +37,7 @@ export function kartyakMegjelenitese(txt) {
 
 let kosarTartalma = [];
 
-function frissitKosar() {  //Táblázatként megjeleníti
+function frissitKosar() {  //Táblázatként megjelenít
   let kosarHTML = `
   <div class="container">
   <h2>Kosár:</h2>
@@ -61,7 +61,7 @@ function frissitKosar() {  //Táblázatként megjeleníti
       termekDarabok[termek.nev] = 1;
     }
 
-    osszeg += termek.ar;  //és az árát is számolja
+    osszeg += termek.ar;  
   });
 
   for (let termekNev in termekDarabok) {  //Megkeresi az aktuális termékhez az adatokat 
@@ -103,12 +103,12 @@ $(document).on("click", ".torles-gomb", function () {
   // Megkeresi a kiválasztott terméket a kosárban
   const index = kosarTartalma.findIndex(termek => termek.nev === termekNev);
 
-  // Ha a termék több mint egyszer van a kosárban
+  // Ha a termék többször van
   if (kosarTartalma.filter(termek => termek.nev === termekNev).length > 1) {
     // Eltávolít egy darabot
     kosarTartalma.splice(index, 1);
   } else {
-    //Ha csak egy darab van belőle a kosárban, teljesen eltávolítja
+    //Ha csak egy darab van belőle 
     kosarTartalma.splice(index, 1);
   }
 
