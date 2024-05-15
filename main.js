@@ -60,7 +60,7 @@ function szuresEsemeny() {
     kartyakMegjelenitese(htmlOsszeallitKartyak(szLISTA));
   });
   init(szLISTA)
-
+}
 
 
 
