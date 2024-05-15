@@ -55,7 +55,7 @@ function frissitKosar() {  //Táblázatként megjeleníti
   let termekDarabok = {};
 
   kosarTartalma.forEach(termek => {
-    if (termekDarabok.hasOwnProperty(termek.nev)) {     //Számolja, hogy az adott termék hányszor került bele a kosárba
+    if (termekDarabok.hasOwnProperty(termek.nev)) { //Számolja, hogy az adott termék hányszor került bele a kosárba
       termekDarabok[termek.nev]++;
     } else {
       termekDarabok[termek.nev] = 1;

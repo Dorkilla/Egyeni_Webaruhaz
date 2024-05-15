@@ -30,16 +30,17 @@
       </div>
 
       <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-            Rendezési szempontok
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+          data-bs-toggle="dropdown" aria-expanded="false">
+          Rendezési szempontok
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <li><a class="Nevn" href="#">Név növekvő rendezése</a></li>
-            <li><a class="Nevcs" href="#">Név csökkenő rendezése</a></li>
-            <li><a class="Arn" href="#">Ár növekvő rendezése</a></li>
-            <li><a class="Arcs" href="#">Ár csökkenő rendezése</a></li>
-            <li><a class="Meretn" href="#">Méret növekvő rendezése</a></li>
-            <li><a class="Meretcs" href="#">Méret csökkenő rendezése</a></li>
+          <li><a class="Nevn" href="#">Név növekvő rendezése</a></li>
+          <li><a class="Nevcs" href="#">Név csökkenő rendezése</a></li>
+          <li><a class="Arn" href="#">Ár növekvő rendezése</a></li>
+          <li><a class="Arcs" href="#">Ár csökkenő rendezése</a></li>
+          <li><a class="Meretn" href="#">Méret növekvő rendezése</a></li>
+          <li><a class="Meretcs" href="#">Méret csökkenő rendezése</a></li>
         </ul>
       </div>
 
@@ -51,15 +52,51 @@
       </form>
     </nav>
     <div id="termekKartyak" class="termekek">
-      
+
     </div>
     <div class="kosar-es-osszeg">
       <div class="kosar"></div>
     </div>
 
     <aside class="szemelyes-adatlap">
-      <!-- Személyes adatlap tartalma -->
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <h1 class="text-center mb-4">Személyes Adatlap</h1>
+          <form action="#" method="get">
+            <fieldset>
+              <legend class="text-center mb-4">Rendelés típusa</legend>
+              <div class="mb-3">
+                <div class="form-check">
+                  <input type="radio" id="radio1" name="tipusok" value="megjegyzes" class="form-check-input">
+                  <label for="radio1" class="form-check-label">Házhozszállítás</label>
+                </div>
+                <div class="form-check">
+                  <input type="radio" id="radio2" name="tipusok" value="javaslat" class="form-check-input">
+                  <label for="radio2" class="form-check-label">Személyes átvétel</label>
+                </div>
+                <div class="form-check">
+                  <input type="radio" id="radio3" name="tipusok" value="kerdes" class="form-check-input">
+                  <label for="radio3" class="form-check-label">Csomagpont</label>
+                </div>
+                <div class="mb-3">
+                  <div class="col">
+                    <label for="v_nev">Add meg a vezetékneved:</label>
+                    <input type="text" class="form-control" id="v_nev" placeholder="Vezetéknév">
+                  </div>
+                  <div class="col">
+                    <label for="k_nev">Add meg a keresztneved:</label>
+                    <input type="text" class="form-control" id="k_nev" placeholder="Keresztnév">
+                  </div>
+        </div>
+        <div class="mb-3">
+          <label for="email">Email cím</label>
+          <input type="email" class="form-control" id="email" placeholder="@">
+        </div>
+        </fieldset>
+        </form>
+      </div>
     </aside>
   </main>
 </body>
+
 </html>
