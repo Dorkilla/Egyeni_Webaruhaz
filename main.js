@@ -33,11 +33,14 @@ $(document).ready(function () {
 
 
 let irany = 1;
+let rendezettLista = [];
+let szLISTA = [];
+
 init(KUBULISTA);
 
 function init(lista) {
-  const rendezesLISTA = rendez(lista, irany);
-  kartyakMegjelenitese(htmlOsszeallitKartyak(rendezesLISTA));
+  rendezettLista = rendez(lista, irany);
+  kartyakMegjelenitese(htmlOsszeallitKartyak(rendezettLista));
   rendezEsemeny();
   szuresEsemeny();
 }
@@ -46,20 +49,18 @@ function rendezEsemeny() {
   const nevELEM = $("#NovekvoNev");
   nevELEM.on("click", function () {
     irany *= -1;
-    const rendezettLista = rendez(KUBULISTA, irany);
+    rendezettLista = rendez(KUBULISTA, irany);
     kartyakMegjelenitese(htmlOsszeallitKartyak(rendezettLista));
   });
-  init(rendezettLista)
 }
 
 function szuresEsemeny() {
   const keresoELEM = $("#szuro");
   keresoELEM.on("keyup", function () {
     let keresoSzoveg = keresoELEM.val();
-    const szLISTA = szures(KUBULISTA, keresoSzoveg);
+    szLISTA = szures(KUBULISTA, keresoSzoveg);
     kartyakMegjelenitese(htmlOsszeallitKartyak(szLISTA));
   });
-  init(szLISTA)
 }
 
 

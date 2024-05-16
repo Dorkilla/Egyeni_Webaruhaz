@@ -4,8 +4,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kocsi Dorottya</title>
+  <link rel="shortcut icon" href="kepek/favicon.ico">
+  <title>dorKUBU</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js"
     integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
   <script type="module" src="main.js"></script>
@@ -15,9 +17,9 @@
 <body>
   <main>
     <header>
-      <h1>Webáruház</h1>
     </header>
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+      <img src="kepek/favicon.ico">
       <div class="oldal container-fluid">
         <ul class="navbar-nav">
           <li class="nav-item">
@@ -35,12 +37,12 @@
           Rendezési szempontok
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <li><a class="Nevn" href="#">Név növekvő rendezése</a></li>
-          <li><a class="Nevcs" href="#">Név csökkenő rendezése</a></li>
-          <li><a class="Arn" href="#">Ár növekvő rendezése</a></li>
-          <li><a class="Arcs" href="#">Ár csökkenő rendezése</a></li>
-          <li><a class="Meretn" href="#">Méret növekvő rendezése</a></li>
-          <li><a class="Meretcs" href="#">Méret csökkenő rendezése</a></li>
+          <li id="NovekvoNev">Név növekvő rendezése</li>
+          <li id="CsokkenoNev">Név csökkenő rendezése</li>
+          <li id="NovekvoAr">Ár növekvő rendezése</li>
+          <li id="CsokkenoAr">Ár csökkenő rendezése</li>
+          <li id="NovekvoMeret">Méret növekvő rendezése</li>
+          <li id="CsokkenoMeret">Méret csökkenő rendezése</li>
         </ul>
       </div>
 
@@ -58,42 +60,99 @@
       <div class="kosar"></div>
     </div>
 
-    <aside class="szemelyes-adatlap">
-      <div class="row justify-content-center">
-        <div class="col-md-6">
-          <h1 class="text-center mb-4">Személyes Adatlap</h1>
-          <form action="#" method="get">
-            <fieldset>
-              <legend class="text-center mb-4">Rendelés típusa</legend>
-              <div class="mb-3">
-                <div class="form-check">
-                  <input type="radio" id="radio1" name="tipusok" value="megjegyzes" class="form-check-input">
-                  <label for="radio1" class="form-check-label">Házhozszállítás</label>
-                </div>
-                <div class="form-check">
-                  <input type="radio" id="radio2" name="tipusok" value="javaslat" class="form-check-input">
-                  <label for="radio2" class="form-check-label">Személyes átvétel</label>
-                </div>
-                <div class="form-check">
-                  <input type="radio" id="radio3" name="tipusok" value="kerdes" class="form-check-input">
-                  <label for="radio3" class="form-check-label">Csomagpont</label>
+   <aside id="szemelyes-adatlap" class="szemelyes-adatlap">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <h1 class="text-center mb-4">Személyes Adatlap</h1>
+      <form action="#" method="get">
+        <fieldset>
+          <legend class="text-center mb-4">Rendelés típusa</legend>
+          <div class="mb-3">
+            <div class="form-check">
+              <input type="radio" id="hazhoz_szallitas" name="tipusok" value="megjegyzes" class="form-check-input">
+              <label for="hazhoz_szallitas" class="form-check-label">Házhozszállítás</label>
+            </div>
+            <div class="form-check">
+              <input type="radio" id="szemelyes_atvetel" name="tipusok" value="javaslat" class="form-check-input">
+              <label for="szemelyes_atvetel" class="form-check-label">Személyes átvétel</label>
+            </div>
+            <div class="form-group" id="idopontDiv" style="display:none;">
+              <label for="idopont">Átvételi időpont:</label>
+              <input type="date" id="idopont" name="idopont" class="form-control">
+            </div>
+                <div class="row mb-3">
+                  <div class="col">
+                    <label for="v_nev" class="form-label">Vezetéknév:</label>
+                    <input type="text" class="form-control" id="v_nev" placeholder="Add meg a vezetékneved">
+                  </div>
+                  <div class="col">
+                    <label for="k_nev" class="form-label">Keresztnév:</label>
+                    <input type="text" class="form-control" id="k_nev" placeholder="Add meg a keresztneved">
+                  </div>
                 </div>
                 <div class="mb-3">
+                  <label for="orszag" class="form-label">Ország:</label>
+                  <select id="orszag" name="orszag" class="form-select">
+                    <option value="magyar">Magyarország</option>
+                    <option value="egyeb">Egyéb</option>
+                  </select>
+                  <div id="egyebOrszagDiv" style="display:none;">
+                    <label for="egyebOrszag" class="form-label">Egyéb ország:</label>
+                    <input type="text" id="egyebOrszag" name="egyebOrszag" class="form-control">
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label for="varos" class="form-label">Város:</label>
+                  <select id="varos" name="varos" class="form-select">
+                    <option value="budapest">Budapest</option>
+                    <option value="egyeb">Egyéb</option>
+                  </select>
+                  <div id="egyebVarosDiv" style="display:none;">
+                    <label for="egyebVaros" class="form-label">Egyéb város:</label>
+                    <input type="text" id="egyebVaros" name="egyebVaros" class="form-control">
+                  </div>
+                </div>
+                <div class="row mb-3">
                   <div class="col">
-                    <label for="v_nev">Add meg a vezetékneved:</label>
-                    <input type="text" class="form-control" id="v_nev" placeholder="Vezetéknév">
+                    <label for="irszam" class="form-label">Irányítószám:</label>
+                    <input type="text" class="form-control" id="irszam" placeholder="Add meg az irányítószámot">
                   </div>
                   <div class="col">
-                    <label for="k_nev">Add meg a keresztneved:</label>
-                    <input type="text" class="form-control" id="k_nev" placeholder="Keresztnév">
+                    <label for="kerulet" class="form-label">Kerület:</label>
+                    <input type="text" class="form-control" id="kerulet" placeholder="Add meg a kerületet">
                   </div>
+                </div>
+                <div class="mb-3">
+                  <label for="utca" class="form-label">Utca:</label>
+                  <input type="text" class="form-control" id="utca" placeholder="Add meg az utcát">
+                </div>
+                <div class="mb-3">
+                  <label for="hazszam_emelet" class="form-label">Házszám/Emelet:</label>
+                  <input type="text" class="form-control" id="hazszam_emelet"
+                    placeholder="Add meg a házszámot vagy emeletet">
+                </div>
+                <legend class="text-center mb-4">Fizetés típusa</legend>
+                <div class="mb-3">
+                  <div class="form-check">
+                    <input type="radio" id="bankkartya" name="valasztas" class="form-check-input">
+                    <label for="bankkartya" class="form-check-label">Bankkártya</label>
+                  </div>
+                  <div class="form-check">
+                    <input type="radio" id="keszpenz" name="valasztas" class="form-check-input">
+                    <label for="keszpenz" class="form-check-label">Készpénz</label>
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <label for="email">Email cím</label>
+                  <input type="email" class="form-control" id="email" placeholder="@">
+                </div>
+                <div class="col-md-6">
+                  <button type="submit" class="rendel">Rendelés leadása</button>
+                </div>
+              </fieldset>
+              </form>
         </div>
-        <div class="mb-3">
-          <label for="email">Email cím</label>
-          <input type="email" class="form-control" id="email" placeholder="@">
-        </div>
-        </fieldset>
-        </form>
       </div>
     </aside>
   </main>
