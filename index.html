@@ -36,7 +36,7 @@
           data-bs-toggle="dropdown" aria-expanded="false">
           Rendezési szempontok
         </button>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <ul class="dropdown-menu">
           <li id="NovekvoNev">Név növekvő rendezése</li>
           <li id="CsokkenoNev">Név csökkenő rendezése</li>
           <li id="NovekvoAr">Ár növekvő rendezése</li>
@@ -60,26 +60,26 @@
       <div class="kosar"></div>
     </div>
 
-   <aside id="szemelyes-adatlap" class="szemelyes-adatlap">
-  <div class="row justify-content-center">
-    <div class="col-md-6">
-      <h1 class="text-center mb-4">Személyes Adatlap</h1>
-      <form action="#" method="get">
-        <fieldset>
-          <legend class="text-center mb-4">Rendelés típusa</legend>
-          <div class="mb-3">
-            <div class="form-check">
-              <input type="radio" id="hazhoz_szallitas" name="tipusok" value="megjegyzes" class="form-check-input">
-              <label for="hazhoz_szallitas" class="form-check-label">Házhozszállítás</label>
-            </div>
-            <div class="form-check">
-              <input type="radio" id="szemelyes_atvetel" name="tipusok" value="javaslat" class="form-check-input">
-              <label for="szemelyes_atvetel" class="form-check-label">Személyes átvétel</label>
-            </div>
-            <div class="form-group" id="idopontDiv" style="display:none;">
-              <label for="idopont">Átvételi időpont:</label>
-              <input type="date" id="idopont" name="idopont" class="form-control">
-            </div>
+    <aside id="szemelyes-adatlap" class="szemelyes-adatlap">
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <h1 class="text-center mb-4">Személyes Adatlap</h1>
+          <form action="#" method="get">
+            <fieldset>
+              <legend class="text-center mb-4">Rendelés típusa</legend>
+              <div class="mb-3">
+                <div class="form-check">
+                  <input type="radio" id="hazhoz_szallitas" name="tipusok" value="megjegyzes" class="form-check-input">
+                  <label for="hazhoz_szallitas" class="form-check-label">Házhozszállítás</label>
+                </div>
+                <div class="form-check">
+                  <input type="radio" id="szemelyes_atvetel" name="tipusok" value="javaslat" class="form-check-input">
+                  <label for="szemelyes_atvetel" class="form-check-label">Személyes átvétel</label>
+                </div>
+                <div class="form-group" id="idopontDiv" style="display:none;">
+                  <label for="idopont">Átvételi időpont:</label>
+                  <input type="date" id="idopont" name="idopont" class="form-control">
+                </div>
                 <div class="row mb-3">
                   <div class="col">
                     <label for="v_nev" class="form-label">Vezetéknév:</label>
@@ -150,8 +150,8 @@
                 <div class="col-md-6">
                   <button type="submit" class="rendel">Rendelés leadása</button>
                 </div>
-              </fieldset>
-              </form>
+            </fieldset>
+          </form>
         </div>
       </div>
     </aside>
