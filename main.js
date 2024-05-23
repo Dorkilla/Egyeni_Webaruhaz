@@ -2,16 +2,6 @@ import { KUBULISTA } from "./adatok.js";
 import { htmlOsszeallitKartyak, kartyakMegjelenitese } from "./fuggvenyek.js";
 import { rendez, szures } from "./adatkezelo.js";
 
-$(document).ready(function () {
-  //Kártyák elrendezése
-  const kartyaContainer = $(".termekek");
-  const kartyaSzelesseg = kartyaContainer.find(".card").first().outerWidth(true); //Kártya szélessége
-  const containerSzelesseg = kartyaContainer.width(); //Kártya konténer szélessége
-  const kartyaSoronkent = Math.floor(containerSzelesseg / kartyaSzelesseg); //Kártyák száma egy sorban
-
-  //Kártyák k. szélessége soronként
-  kartyaContainer.css("max-width", kartyaSoronkent * kartyaSzelesseg + "px");
-
   //Kezdetben csak a termékek és a kosár 
   $(".szemelyes-adatlap").hide();
 
@@ -25,7 +15,7 @@ $(document).ready(function () {
     $(".termekek, .kosar-es-osszeg").hide();
     $(".szemelyes-adatlap").show();
   });
-});
+
 
 let irany = 1;
 let rendezettLista = [];
