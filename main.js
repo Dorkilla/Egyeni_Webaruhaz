@@ -93,14 +93,9 @@ function szuresEsemeny() {
   });
 }
 
-//Rendelés leadás
-$(document).ready(function () {
-  $(".rendel").on("click", function () {
-    window.alert("Rendelésed sikeresen leadva! Hamarosan felvesszük veled a kapcsolatot.");
-  });
-});
 
 init(KUBULISTA);
+
 
 
 
