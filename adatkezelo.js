@@ -11,6 +11,7 @@ export function rendez(lista, irany, szempont) {
     }
     return eredmeny * irany;
   });
+  return lista;
 }
 
 export function szures(lista, keresoSzoveg) {
@@ -32,7 +33,7 @@ egyebOrszagSelect.addEventListener("change", function () {
   }
 });
 
-$(document).ready(function () {
+
   $("#varos").change(function () {
     if ($(this).val() === "egyeb") {
       $("#egyebVarosDiv").show();
@@ -41,10 +42,9 @@ $(document).ready(function () {
       $("#egyebVaros").val("");
     }
   });
-});
 
 
-$(document).ready(function () {
+
   var idopontDiv = $("#idopontDiv");
   var szemelyesAtvetelRadio = $("#szemelyes_atvetel");
 
@@ -57,7 +57,7 @@ $(document).ready(function () {
       idopontDiv.hide();
     }
   });
-});
+
 function uzenetEsemeny(uzenet) {
   const rendelELEM = $(".rendel");
   rendelELEM.on("click", function () {
